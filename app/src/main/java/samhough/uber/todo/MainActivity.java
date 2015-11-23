@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         aTodoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, todoItems);
     }
 
+    // Read items off the phone
     private void readItems(){
         File filesDir = getFilesDir();
         File file = new File(filesDir, "todos.txt");
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Save to disk
     private void writeItems(){
         File filesDir = getFilesDir();
         File file = new File(filesDir, "todos.txt");
@@ -105,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    // Respond to add button event
     public void onAddItem(View view){
         String text = etEditText.getText().toString();
         if (text.length() > 0) {
