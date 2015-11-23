@@ -106,9 +106,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAddItem(View view){
-        aTodoAdapter.add(etEditText.getText().toString());
-        etEditText.setText("");
-        writeItems();
+        String text = etEditText.getText().toString();
+        if (text.length() > 0) {
+            aTodoAdapter.add(text);
+            etEditText.setText("");
+            writeItems();
+        }
     }
 
     @Override

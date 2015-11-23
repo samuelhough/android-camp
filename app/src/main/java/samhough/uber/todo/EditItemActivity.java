@@ -22,27 +22,35 @@ public class EditItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit);
+        toolbar.setTitle("Edit Item");
         setSupportActionBar(toolbar);
-        etEditText = (EditText) findViewById(R.id.editItemText);
 
-        position = getIntent().getIntExtra("position", 0);
+        etEditText = (EditText) findViewById(R.id.editItemText);
         text = getIntent().getStringExtra("text");
 
-        toolbar.setTitle("Edit me!");
-        System.out.println(toolbar.getTitle());
+        position = getIntent().getIntExtra("position", 0);
         etEditText.setText(text);
+
+        etEditText.requestFocus();
+        if (text.length() > 0) {
+            etEditText.setSelection(text.length());
+        }
     }
 
     public void onUpdateItem(View view){
-        Intent data = new Intent();
+        String newText =  etEditText.getText().toString();
 
-        data.putExtra("position", position);
-        data.putExtra("text",  etEditText.getText().toString());
+        if(newText.length() > 0) {
+            Intent data = new Intent();
 
-        setResult(RESULT_OK, data);
-        finish();
+            data.putExtra("position", position);
+            data.putExtra("text", newText);
+
+            setResult(RESULT_OK, data);
+            finish();
+        }
     }
 
 }
